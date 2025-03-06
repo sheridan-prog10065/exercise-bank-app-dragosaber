@@ -13,5 +13,10 @@ namespace BankApp
         /// the list of accounts managed by the bank
         /// </summary>
         private List<Account> _accountList;
+
+        public Bank()
+        {
+            _accountList = new List<Account>();
+        }
     }
 }

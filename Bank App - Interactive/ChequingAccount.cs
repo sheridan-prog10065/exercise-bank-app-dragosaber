@@ -8,6 +8,7 @@ namespace BankApp
 {
     public class ChequingAccount : Account
     {
+        #region Fields
         /// <summary>
         /// The overdraft limit for chequing accounts
         /// </summary>
@@ -17,5 +18,34 @@ namespace BankApp
         /// The maximum interest rate for chequing accounts
         /// </summary>
         private const double MAX_INTEREST_RATE = 1.0;
+
+        #endregion
+
+        #region Constructors
+        public ChequingAccount(int acctNo, string acctHolderName) : base(acctNo, acctHolderName)
+        {
+
+        }
+
+        #endregion
+
+        #region Properties
+        public override double annualIntrRate
+        {
+            get { return _annualIntrRate; }
+            set
+            {
+                if (value > MAX_INTEREST_RATE)
+                {
+                    annualIntrRate = MAX_INTEREST_RATE;
+                }
+                else
+                {
+                    annualIntrRate = value;
+                }
+            }
+        }
+
+        #endregion
     }
 }

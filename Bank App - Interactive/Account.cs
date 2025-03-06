@@ -8,6 +8,7 @@ namespace BankApp
 {
     public class Account
     {
+        #region Fields
         /// <summary>
         /// the name of the account holder
         /// </summary>
@@ -21,11 +22,49 @@ namespace BankApp
         /// <summary>
         /// the annual interest rate applicable on the balance
         /// </summary>
-        private double _annualIntrRate;
+        protected double _annualIntrRate;
 
         /// <summary>
         /// the account balance that gets affected by withdrawls and deposits
         /// </summary>
-        private decimal _balance;
+        protected decimal _balance;
+
+        #endregion
+
+        #region Constructors
+        public Account(int acctNo, string acctHolderName)
+        {
+
+            _acctNo = acctNo;
+            _acctHolderName = acctHolderName;
+            _annualIntrRate = 0.0;
+            _balance = 0;
+        }
+
+        #endregion
+
+        #region Properties
+        public string acctHolderName
+        {
+            get { return _acctHolderName; }
+        }
+
+        public int acctNo
+        {
+            get { return _acctNo; }
+        }
+
+        public virtual double annualIntrRate
+        {
+            get { return _annualIntrRate; }
+            set { _annualIntrRate = value; }
+        }
+
+        public decimal balance
+        {
+            get { return _balance; }
+        }
+
+        #endregion
     }
 }
