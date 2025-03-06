@@ -38,5 +38,18 @@ namespace BankApp
         }
 
         #endregion
+
+        #region Methods
+
+        public Account OpenAccount(int accountNumber, string accountHolderName)
+        {
+            //Create the new account
+            Account newAccount = new Account(accountNumber, accountHolderName);
+
+            //Return the new account
+            return newAccount;
+        }
+
+        #endregion
     }
 }
