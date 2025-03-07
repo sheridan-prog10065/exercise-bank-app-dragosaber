@@ -50,6 +50,20 @@ namespace BankApp
             return newAccount;
         }
 
+        public Account? FindAccount(int acctNo)
+        {
+            //search through the bank list until one is found with the given acctNo
+            foreach (Account account in _accountList)
+            {
+                //return the account to the user
+                if (account.acctNo == acctNo)
+                    return account;
+            }
+            //if no account is found, return none
+            return null;
+        }
+
+
         #endregion
     }
 }

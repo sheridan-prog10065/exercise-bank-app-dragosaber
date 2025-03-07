@@ -68,6 +68,47 @@ namespace BankApp
         #endregion
 
         #region Methods
+
+        public decimal? Deposit(double amount)
+        {
+            //check if the amount is less than zero
+
+            if (amount < 0)
+            {
+                //if less than zero, return null
+                return null;
+            }
+
+            //convert the amount to a decimal
+            decimal decimalAmount = (decimal)(double)amount;
+
+            //add the amount to the balance
+            _balance += decimalAmount;
+
+            //return the new balance
+            return _balance;
+        }
+
+        public decimal? Withdraw(double amount)
+        {
+            //check if the amount is less than zero
+            if (amount < 0)
+            {
+                //if less than zero, return null
+                return null;
+            }
+
+            //convert the amount to a decimal
+            decimal decimalAmount = (decimal)(double)amount;
+
+            //subtract the amount to the balance
+            
+            _balance -= decimalAmount;
+
+            //return the new balance
+            return _balance;
+        }
+
         public override string ToString()
         {
             return $" Account Number: {_acctNo}, Holder Name: {_acctHolderName}, Interest rate: {_annualIntrRate}, Balance: {_balance}";
