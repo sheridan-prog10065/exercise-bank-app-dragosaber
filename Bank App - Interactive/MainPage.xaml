@@ -14,7 +14,6 @@
 
         <Label Text="New Account" FontSize="24" Margin="0, 20, 0, 0"/>
 
-        <!--
         <Label Text="Type:" FontSize="14"/>
         <Picker x:Name="_pckAccountType" Title="{OnPlatform MacCatalyst='', Default='Select the Account type'}">
             <Picker.Items>
@@ -22,7 +21,6 @@
                 <x:String>Chequing</x:String>
             </Picker.Items>
         </Picker>
-        -->
 
         <Label Text="Account Number" FontSize="18"/>
         <Entry x:Name="_txtAcctNo" Placeholder="Enter the account Number" FontSize="17" Margin="0,0,0,10"/>

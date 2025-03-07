@@ -12,12 +12,12 @@ namespace BankApp
         /// <summary>
         /// the name of the account holder
         /// </summary>
-        private string _acctHolderName;
+        protected string _acctHolderName;
 
         /// <summary>
         /// the account number
         /// </summary>
-        private int _acctNo;
+        protected int _acctNo;
 
         /// <summary>
         /// the annual interest rate applicable on the balance
@@ -69,10 +69,9 @@ namespace BankApp
 
         #region Methods
 
-        public decimal? Deposit(double amount)
+        public virtual decimal? Deposit(double amount)
         {
             //check if the amount is less than zero
-
             if (amount < 0)
             {
                 //if less than zero, return null
@@ -89,7 +88,7 @@ namespace BankApp
             return _balance;
         }
 
-        public decimal? Withdraw(double amount)
+        public virtual decimal? Withdraw(double amount)
         {
             //check if the amount is less than zero
             if (amount < 0)
@@ -111,7 +110,7 @@ namespace BankApp
 
         public override string ToString()
         {
-            return $" Account Number: {_acctNo}, Holder Name: {_acctHolderName}, Interest rate: {_annualIntrRate}, Balance: {_balance}";
+            return $" Account Type: Default, Account Number: {_acctNo}, Holder Name: {_acctHolderName}, Interest rate: {_annualIntrRate}, Balance: {_balance}";
         }
 
         #endregion

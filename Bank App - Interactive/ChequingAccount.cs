@@ -47,5 +47,40 @@ namespace BankApp
         }
 
         #endregion
+
+        #region Methods
+
+        public override decimal? Withdraw(double amount)
+        {
+            //check if the amount is less than zero
+            if (amount < 0)
+            {
+                //if less than zero, return null
+                return null;
+            }
+
+            //convert the amount to a decimal
+            decimal decimalAmount = (decimal)(double)amount;
+
+            //check if the amount is greater than the balance + the overdraft limit
+            if (decimalAmount > _balance + OVERDRAFT_LIMIT)
+            {
+                //if less than zero, return null
+                return null;
+            }
+
+            //add the amount to the balance
+            _balance -= decimalAmount;
+
+            //return the new balance
+            return _balance;
+        }
+
+        public override string ToString()
+        {
+            return $" Account Type: Chequing, Number: {_acctNo}, Holder Name: {_acctHolderName}, Interest rate: {_annualIntrRate}, Balance: {_balance}, Max Overdraft: $500";
+        }
+
+        #endregion
     }
 }

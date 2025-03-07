@@ -47,5 +47,19 @@ namespace BankApp
         }
 
         #endregion
+
+        #region Methods
+
+        public override decimal? Deposit(double amount)
+        {
+            return base.Deposit(amount + amount * MATCHING_DEPOSIT_RATIO);
+        }
+
+        public override string ToString()
+        {
+            return $" Account Type: Savings, Account Number: {_acctNo}, Holder Name: {_acctHolderName}, Interest rate: {_annualIntrRate}, Balance: {_balance}, Min Interest rate: 3%";
+        }
+
+        #endregion
     }
 }

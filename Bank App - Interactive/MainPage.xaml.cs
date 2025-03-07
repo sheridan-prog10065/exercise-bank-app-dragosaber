@@ -21,18 +21,15 @@ public partial class MainPage : ContentPage
     private void OnCreateAccount(object sender, EventArgs e)
     {
         //Read the accounts properties
-        //string accountType = _pckAccountType.SelectedItem as string;
+        string accountType = _pckAccountType.SelectedItem as string;
         int accountNumber = int.Parse(_txtAcctNo.Text);
         string accountHolderName = _txtAcctHolderName.Text;
 
-        //realAccountType = this.DetermineType(accountType);
-
         //Create an Account object based on the provided information
-        Account createdAccount = _bank.OpenAccount(accountNumber, accountHolderName);
+        Account createdAccount = _bank.OpenAccount(accountNumber, accountHolderName, accountType);
 
         //Add the account to the Bank list
         _bank.Accounts.Add(createdAccount);
-
     }
 
     private async void OnDeposit(object sender, EventArgs e)
@@ -62,12 +59,19 @@ public partial class MainPage : ContentPage
 
                 Account selecteddAccount = (Account)_lstBankAccounts.SelectedItem;
 
-                selecteddAccount.Deposit(depositedAmount);
+                decimal? attemptDeposit = selecteddAccount.Deposit(depositedAmount);
 
                 _lstBankAccounts.ItemsSource = null;
                 _lstBankAccounts.ItemsSource = _bank.Accounts;
 
-                _txtDepositAmount.Text = $"You deposited ${depositedAmount}";
+                if (attemptDeposit == null)
+                {
+                    _txtDepositAmount.Text = $"You deposited ${depositedAmount}";
+                }
+                else
+                {
+                    _txtDepositAmount.Text = $"You deposited ${attemptDeposit}";
+                }
 
                 await Task.Delay(4000);
 
@@ -104,14 +108,41 @@ public partial class MainPage : ContentPage
             {
                 int withdrawAmount = int.Parse(_txtWithdrawAmount.Text);
 
-                Account selecteddAccount = (Account)_lstBankAccounts.SelectedItem;
+                Account selectedAccount = null;
 
-                selecteddAccount.Withdraw(withdrawAmount);
+                if (_lstBankAccounts.SelectedItem is SavingsAccount savingsAccount)
+                {
+                    selectedAccount = savingsAccount;
+                }
+                else if (_lstBankAccounts.SelectedItem is ChequingAccount chequingAccount)
+                {
+                    selectedAccount = chequingAccount;
+                }
+                else if (_lstBankAccounts.SelectedItem is Account account)
+                {
+                    selectedAccount = account;
+                }
+
+                decimal? attemptWithdraw = null;
+
+                if (selectedAccount != null)
+                {
+                    attemptWithdraw = selectedAccount.Withdraw(withdrawAmount);
+                }
+
+                Console.WriteLine(attemptWithdraw);
 
                 _lstBankAccounts.ItemsSource = null;
                 _lstBankAccounts.ItemsSource = _bank.Accounts;
 
-                _txtWithdrawAmount.Text = $"You withdrew ${withdrawAmount}";
+                if (attemptWithdraw != null)
+                {
+                    _txtWithdrawAmount.Text = $"You withdrew ${withdrawAmount}";
+                }
+                else
+                {
+                    _txtWithdrawAmount.Text = "ERROR";
+                }
 
                 await Task.Delay(4000);
 
