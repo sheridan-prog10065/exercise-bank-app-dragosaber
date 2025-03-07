@@ -10,7 +10,7 @@ public partial class MainPage : ContentPage
 
 		InitializeComponent();
 
-		//_lstBankAccounts.ItemsSource = _bank.Accounts;
+        _lstBankAccounts.ItemsSource = _bank.Accounts;
     }
 
     private void OnCreateAccount(object sender, EventArgs e)

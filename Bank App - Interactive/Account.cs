@@ -66,5 +66,13 @@ namespace BankApp
         }
 
         #endregion
+
+        #region Methods
+        public override string ToString()
+        {
+            return $" Account Number: {_acctNo}, Holder Name: {_acctHolderName}, Interest rate: {_annualIntrRate}, Balance: {_balance}";
+        }
+
+        #endregion
     }
 }

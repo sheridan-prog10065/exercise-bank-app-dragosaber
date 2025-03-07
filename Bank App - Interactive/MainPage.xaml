@@ -32,7 +32,6 @@
 
         <Button Text="Register" WidthRequest="250" HorizontalOptions="Start" Clicked="OnCreateAccount"/>
 
-        <!--
         <Label Text="Accounts" FontSize="24" 
         Grid.Row="1"/>
         <Border Grid.Row="2" 
@@ -41,7 +40,6 @@
         Android='0, 0, 0, 10'}">
             <CollectionView x:Name="_lstBankAccounts" HorizontalOptions="Fill"/>
         </Border>
-        -->
 
     </VerticalStackLayout>
 
